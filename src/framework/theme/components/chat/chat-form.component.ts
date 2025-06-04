@@ -66,11 +66,10 @@ import { DomSanitizer } from '@angular/platform-browser';
       </ng-container>
     </div>
     <div class="message-row">
-      <input [(ngModel)]="message"
-             [class.with-button]="showButton"
-             type="text"
-             placeholder="{{ fileOver ? 'Drop file to send' : 'Type a message' }}"
-             (keyup.enter)="sendMessage()">
+      <textarea [(ngModel)]="message"
+                [class.with-button]="showButton"
+                placeholder="{{ fileOver ? 'Drop file to send' : 'Type a message' }}"
+                (keydown.enter)="sendOnEnter($event)"></textarea>
       <button *ngIf="showButton" class="btn" [class.with-icon]="!buttonTitle" (click)="sendMessage()">
         {{ buttonTitle }}<span *ngIf="!buttonTitle" [class]="buttonIcon"></span>
       </button>
@@ -172,6 +171,11 @@ export class NbChatFormComponent {
     if (this.dropFiles) {
       this.fileOver = false;
     }
+  }
+
+  sendOnEnter(event: KeyboardEvent) {
+    event.preventDefault();
+    this.sendMessage();
   }
 
   sendMessage() {

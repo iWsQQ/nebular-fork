@@ -230,6 +230,7 @@
         display: flex;
       }
 
+      textarea,
       input {
         flex: 1;
         padding: 1.25rem 1.5rem;
@@ -239,6 +240,7 @@
         color: nb-theme(chat-form-fg);
         outline: none;
         box-sizing: border-box;
+        resize: none;
 
         &.with-button {
           border-bottom-right-radius: 0;
@@ -270,6 +272,7 @@
         }
       }
 
+      &.file-over textarea,
       &.file-over input {
         border: 1px dashed nb-theme(chat-form-active-border);
         box-shadow: 0 0 0 4px nb-theme(chat-form-bg);
